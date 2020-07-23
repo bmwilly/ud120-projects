@@ -41,5 +41,4 @@ print(f"training time: {round(time() - t0, 3)}")
 acc = accuracy_score(labels_test, y_pred)
 print(("{:.3f}".format(acc)))
 
-
 #########################################################
