@@ -37,13 +37,14 @@ def all_training_data(features_train, features_test, labels_train, labels_test):
 
     acc = accuracy_score(labels_test, prediction)
     print(acc)
-    #Accuracy: 0.9840728100113766
+    # Accuracy: 0.9840728100113766
+
 
 def one_percent_training_data(features_train, features_test, labels_train, labels_test):
     t0 = time()
     clf = SVC(kernel="linear")
-    features_train = features_train[:len(features_train)//100]
-    labels_train = labels_train[:len(labels_train)//100]
+    features_train = features_train[: len(features_train) // 100]
+    labels_train = labels_train[: len(labels_train) // 100]
 
     clf.fit(features_train, labels_train)
     print("Training Time: {time}".format(time=round(time() - t0, 3)))
@@ -56,13 +57,14 @@ def one_percent_training_data(features_train, features_test, labels_train, label
 
     acc = accuracy_score(labels_test, prediction)
     print(acc)
-    #Accuracy: 0.8845278725824801
+    # Accuracy: 0.8845278725824801
+
 
 def one_percent_training_data_rbf(features_train, features_test, labels_train, labels_test):
     t0 = time()
     clf = SVC(kernel="rbf")
-    features_train = features_train[:len(features_train)//100]
-    labels_train = labels_train[:len(labels_train)//100]
+    features_train = features_train[: len(features_train) // 100]
+    labels_train = labels_train[: len(labels_train) // 100]
 
     clf.fit(features_train, labels_train)
     print("Training Time: {time}".format(time=round(time() - t0, 3)))
@@ -75,13 +77,14 @@ def one_percent_training_data_rbf(features_train, features_test, labels_train, l
 
     acc = accuracy_score(labels_test, prediction)
     print(acc)
-    #Accuracy: 0.616
+    # Accuracy: 0.616
+
 
 def one_percent_training_data_diff_c_levels(features_train, features_test, labels_train, labels_test):
     t0 = time()
     clf = SVC(kernel="rbf", C=10000)
-    features_train = features_train[:len(features_train)//100]
-    labels_train = labels_train[:len(labels_train)//100]
+    features_train = features_train[: len(features_train) // 100]
+    labels_train = labels_train[: len(labels_train) // 100]
 
     clf.fit(features_train, labels_train)
     print("Training Time: {time}".format(time=round(time() - t0, 3)))
@@ -92,10 +95,11 @@ def one_percent_training_data_diff_c_levels(features_train, features_test, label
 
     acc = accuracy_score(labels_test, prediction)
     print(acc)
-    #C:10 -Accuracy: 0.61604
-    #C:100 -Accuracy: 0.61604095
-    #C:1 000 -Accuracy: 0.8213879
-    #C:10 000 -Accuracy: 0.89249146757
+    # C:10 -Accuracy: 0.61604
+    # C:100 -Accuracy: 0.61604095
+    # C:1 000 -Accuracy: 0.8213879
+    # C:10 000 -Accuracy: 0.89249146757
+
 
 def all_data_large_c_levels(features_train, features_test, labels_train, labels_test):
     t0 = time()
@@ -110,13 +114,14 @@ def all_data_large_c_levels(features_train, features_test, labels_train, labels_
 
     acc = accuracy_score(labels_test, prediction)
     print(acc)
-    #Accuracy: 0.9908
+    # Accuracy: 0.9908
+
 
 def less_data_predictions(features_train, features_test, labels_train, labels_test):
     t0 = time()
     clf = SVC(kernel="rbf", C=10000)
-    features_train = features_train[:len(features_train)//100]
-    labels_train = labels_train[:len(labels_train)//100]
+    features_train = features_train[: len(features_train) // 100]
+    labels_train = labels_train[: len(labels_train) // 100]
 
     clf.fit(features_train, labels_train)
     print("Training Time: {time}".format(time=round(time() - t0, 3)))
@@ -133,13 +138,14 @@ def less_data_predictions(features_train, features_test, labels_train, labels_te
     print(predictions[50])
     # 1
 
+
 def total_chris_predictions(features_train, features_test, labels_train, labels_test):
     t0 = time()
     clf = SVC(kernel="rbf", C=10000)
 
     clf.fit(features_train, labels_train)
-    features_train = features_train[:len(features_train)//100]
-    labels_train = labels_train[:len(labels_train)//100]
+    features_train = features_train[: len(features_train) // 100]
+    labels_train = labels_train[: len(labels_train) // 100]
     print("Training Time: {time}".format(time=round(time() - t0, 3)))
 
     t0 = time()
@@ -149,9 +155,10 @@ def total_chris_predictions(features_train, features_test, labels_train, labels_
     print(np.count_nonzero(predictions == 1))
     # Total Chris Predictions: 877
 
+
 from sklearn.metrics import accuracy_score
 
-from sklearn.svm import SVC # Support vector classifier
+from sklearn.svm import SVC  # Support vector classifier
 from time import time
 
 # Linear kernel results in a straight line decisions boundry
@@ -166,15 +173,13 @@ from time import time
 ## C - More training points correct the higher the value
 ## Gamma - Higher the value the more the algorithm will try match
 
-#all_training_data(features_train, features_test, labels_train, labels_test)
-#one_percent_training_data(features_train, features_test, labels_train, labels_test)
-#one_percent_training_data_rbf(features_train, features_test, labels_train, labels_test)
-#one_percent_training_data_diff_c_levels(features_train, features_test, labels_train, labels_test)
-#all_data_large_c_levels(features_train, features_test, labels_train, labels_test)
-#less_data_predictions(features_train, features_test, labels_train, labels_test)
+# all_training_data(features_train, features_test, labels_train, labels_test)
+# one_percent_training_data(features_train, features_test, labels_train, labels_test)
+# one_percent_training_data_rbf(features_train, features_test, labels_train, labels_test)
+# one_percent_training_data_diff_c_levels(features_train, features_test, labels_train, labels_test)
+# all_data_large_c_levels(features_train, features_test, labels_train, labels_test)
+# less_data_predictions(features_train, features_test, labels_train, labels_test)
 total_chris_predictions(features_train, features_test, labels_train, labels_test)
 
 # SVM training and predictions are much slower then Naive Bayes
 #########################################################
-
-
