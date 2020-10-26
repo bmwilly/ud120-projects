@@ -23,9 +23,14 @@ from feature_format import featureFormat, targetFeatureSplit
 with Path("../final_project/final_project_dataset_modified.pkl").open("rb") as f:
     dictionary = pickle.load(f)
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 ### list the features you want to look at--first item in the
 ### list will be the "target" feature
 features_list = ["bonus", "salary"]
+# features_list = ["bonus", "long_term_incentive"]
 data = featureFormat(dictionary, features_list, remove_any_zeroes=True)
 target, features = targetFeatureSplit(data)
 
@@ -48,6 +53,11 @@ from sklearn.linear_model import LinearRegression
 reg = LinearRegression()
 reg.fit(feature_train, target_train)
 
+logger.info(f"Slope: {reg.coef_}")
+logger.info(f"Intercept: {reg.intercept_}")
+
+logger.info(f"Training score: {reg.score(feature_train, target_train)}")
+logger.info(f"Test score: {reg.score(feature_test, target_test)}")
 
 ### draw the scatterplot, with color-coded training and testing points
 import matplotlib.pyplot as plt
@@ -67,6 +77,8 @@ try:
     plt.plot(feature_test, reg.predict(feature_test))
 except NameError:
     pass
+reg.fit(feature_test, target_test)
+plt.plot(feature_train, reg.predict(feature_train), color="b")
 plt.xlabel(features_list[1])
 plt.ylabel(features_list[0])
 plt.legend()
